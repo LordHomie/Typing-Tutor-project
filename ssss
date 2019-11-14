@@ -36,25 +36,26 @@ try:
 
                         k += 1
                         if k == len(z):
+
+                            t1 = time.time()
+                            # accuracy = len(set(k.split()) & set(line.split()))
+                            # accuracy = (accuracy / word_count) * 100
+                            timeTaken = t1 - t0
+                            wordPM = (word_count / timeTaken)
+                            print('   ' + 'speed: ' + '{:.1f}'.format(
+                                wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+
+                            print('Enter "m" if you want to move to the next sentence:  ')
+                            while True:
+
+                                character = msvcrt.getch()
+                                if character == b'm':
+                                    break
+                                else:
+                                    pass
                             break
 
-            t1 = time.time()
-            # accuracy = len(set(k.split()) & set(line.split()))
-            # accuracy = (accuracy / word_count) * 100
-            timeTaken = t1 - t0
-            wordPM = (word_count / timeTaken)
-            print('   ' + 'speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
-            
-            print('Enter "m" if you want to move to the next sentence:  ')
-            while True:
-
-                character = msvcrt.getch()
-                if character == b'm':
-                    break
                 else:
-                    pass
-
-                if platform.system() != "Windows":
                     c = getch()
                     print(c, type(c), z[k], type(z[k]), c == z[k])
                     if c == z[k]:
@@ -62,24 +63,25 @@ try:
 
                         k += 1
                         if k == len(z):
+
+                            t1 = time.time()
+                            # accuracy = len(set(k.split()) & set(line.split()))
+                            # accuracy = (accuracy / word_count) * 100
+                            timeTaken = t1 - t0
+                            wordPM = (word_count / timeTaken)
+                            print('   ' + 'speed: ' + '{:.1f}'.format(
+                                wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+
+                            print('Enter "m" if you want to move to the next sentence:  ')
+                            while True:
+
+                                character = msvcrt.getch()
+                                if character == b'm':
+                                    break
+                                else:
+                                    pass
                             break
-            
-            t1 = time.time()
-            # accuracy = len(set(k.split()) & set(line.split()))
-            # accuracy = (accuracy / word_count) * 100
-            timeTaken = t1 - t0
-            wordPM = (word_count / timeTaken)
-            print('   ' + 'speed: ' + '{:.1f}'.format(
-                wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
-
-            print('Enter "m" if you want to move to the next sentence:  ')
-            while True:
-
-                character = msvcrt.getch()
-                if character == b'm':
-                    break
-                else:
-                    pass
+         
 
 
 
