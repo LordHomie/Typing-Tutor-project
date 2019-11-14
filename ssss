@@ -57,7 +57,7 @@ try:
             while True:
                     try:
                         character = msvcrt.getch()
-                        if character.is_pressed('m'):
+                        if character == b'm':
                                 break
                         else:
                                 pass
