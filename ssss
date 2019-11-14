@@ -1,5 +1,4 @@
-import time
-import keyboard
+
 import platform
 
 if platform.system() == "Windows":
@@ -28,9 +27,10 @@ try:
             k = 0
             z = line.strip()
             while True:
-                c = getch().decode()
-                print(c,type(c),z[k],type(z[k]),c==z[k])
-                if c == z[k]:
+                if platform.system() == "Windows":
+                    c = getch().decode()
+                    print(c,type(c),z[k],type(z[k]),c==z[k])
+                    if c == z[k]:
                     # if keyboard.is_pressed(c):
                         print(c)
 
@@ -38,7 +38,18 @@ try:
                         if k == len(z):
                             break
                 else:
-                    pass
+                    c = getch()
+                    print(c, type(c), z[k], type(z[k]), c == z[k])
+                    if c == z[k]:
+                        # if keyboard.is_pressed(c):
+                        print(c)
+
+                        k += 1
+                        if k == len(z):
+                            break
+                        
+                    
+                
 
     myfile.close()
 
