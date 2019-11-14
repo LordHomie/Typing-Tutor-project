@@ -48,7 +48,7 @@ try:
                             print('Enter "m" if you want to move to the next sentence:  ')
                             while True:
 
-                                character = msvcrt.getch()
+                                character = getch()
                                 if character == b'm':
                                     break
                                 else:
@@ -75,7 +75,7 @@ try:
                             print('Enter "m" if you want to move to the next sentence:  ')
                             while True:
 
-                                character = msvcrt.getch()
+                                character = getch()
                                 if character == b'm':
                                     break
                                 else:
