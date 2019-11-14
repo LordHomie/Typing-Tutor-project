@@ -48,7 +48,7 @@ try:
                             print('Enter "m" if you want to move to the next sentence:  ')
                             while True:
 
-                                character = getch()
+                                character = msvcrt.getch()
                                 if character == b'm':
                                     break
                                 else:
@@ -73,15 +73,26 @@ try:
                                 wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
 
                             print('Enter "m" if you want to move to the next sentence:  ')
+                            import tty, termios, sys
+                            def getch():
+                                fd = sys.stdin.fileno()
+                                old_settings = termios.tcgetattr(fd)
+                                try:
+                                    tty.setraw(sys.stdin.fileno())
+                                    ch = sys.stdin.read(1)
+                                finally:
+                                    termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+                                return ch
+
                             while True:
 
                                 character = getch()
-                                if character == b'm':
+                                if (character == "m"):
                                     break
                                 else:
                                     pass
                             break
-         
+
 
 
 
