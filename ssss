@@ -35,7 +35,7 @@ try:
                     if (c==z[k]) is False:
                         print(False)
                         error+=1
-                        print(error)
+                        print('error counter: ', error)
                     else:
                         print(True)
                     if c == z[k]:
@@ -63,7 +63,14 @@ try:
 
                 else:
                     c = getch()
-                    print(c, type(c), z[k], type(z[k]), c == z[k])
+                    # print(c, type(c), z[k], type(z[k]), c == z[k])
+                    if (c==z[k]) is False:
+                        print(False)
+                        error+=1
+                        print('error counter: ', error)
+                    else:
+                        print(True)
+
                     if c == z[k]:
                         print(c)
 
@@ -75,8 +82,8 @@ try:
                             # accuracy = (accuracy / word_count) * 100
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            print('   ' + 'speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
-
+                            print('speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+                            print('Total errors: ', error)
                             print('Enter "m" if you want to move to the next sentence:  ')
                             import tty, termios, sys
                             def getch():
