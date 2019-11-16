@@ -25,12 +25,19 @@ try:
             print("Line {}: {}".format(cnt, line.strip()), sep='')
             cnt += 1
             k = 0
+            error=0
             z = line.strip()
             t0 = time.time()
             while True:
                 if platform.system() == "Windows":
                     c = getch().decode()
-                    print(c, type(c), z[k], type(z[k]), c == z[k])
+                    # print(c, type(c), z[k], type(z[k]), c == z[k])
+                    if (c==z[k]) is False:
+                        print(False)
+                        error+=1
+                        print(error)
+                    else:
+                        print(True)
                     if c == z[k]:
                         print(c)
 
@@ -38,13 +45,12 @@ try:
                         if k == len(z):
 
                             t1 = time.time()
-                            # accuracy = len(set(k.split()) & set(line.split()))
+                            # accuracy = len(set(c.split()) & set(line.split()))
                             # accuracy = (accuracy / word_count) * 100
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            print('   ' + 'speed: ' + '{:.1f}'.format(
-                                wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
-
+                            print('speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+                            print('Total errors: ', error)
                             print('Enter "m" if you want to move to the next sentence:  ')
                             while True:
 
@@ -65,12 +71,11 @@ try:
                         if k == len(z):
 
                             t1 = time.time()
-                            # accuracy = len(set(k.split()) & set(line.split()))
+                            # accuracy = len(set(c.split()) & set(line.split()))
                             # accuracy = (accuracy / word_count) * 100
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            print('   ' + 'speed: ' + '{:.1f}'.format(
-                                wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+                            print('   ' + 'speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
 
                             print('Enter "m" if you want to move to the next sentence:  ')
                             import tty, termios, sys
