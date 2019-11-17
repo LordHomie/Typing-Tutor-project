@@ -103,7 +103,14 @@ try:
                             wordPM = (word_count / timeTaken)
                             speed = 'speed: ' + '{:.1f}'.format(wordPM)
                             print(speed)  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
-                            print('Total errors: ', error)
+                            Totalerrors = 'Totalerrors: ' + '{}'.format(error)
+                            print(Totalerrors)
+
+                            # for line in st:
+                            st.write("Line {}: ".format(it))
+                            it += 1
+                            st.write(speed + ' , ')
+                            st.write(Totalerrors + '\n')
 
                             print('Enter "m" if you want to move to the next sentence:  ')
                             import tty, termios, sys
