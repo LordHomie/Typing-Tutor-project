@@ -1,6 +1,6 @@
 import time
 import platform
-
+import os
 if platform.system() == "Windows":
 	        import msvcrt
 	        def getch():
@@ -15,7 +15,10 @@ else:
 			        ch = sys.stdin.read(1)
 		        finally:
 			        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+
 		        return ch
+if os.path.isfile('statistics.txt'):
+    os.remove('statistics.txt')
 try:
     with open('sentences.TXT', 'r') as myfile:
         pass
@@ -28,6 +31,11 @@ try:
             error=0
             z = line.strip()
             t0 = time.time()
+
+
+            st= open('statistics.txt', 'a')
+            it=1
+
             while True:
                 if platform.system() == "Windows":
                     c = getch().decode()
@@ -49,16 +57,27 @@ try:
                             # accuracy = (accuracy / word_count) * 100
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            print('speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
-                            print('Total errors: ', error)
+                            speed= 'speed: ' + '{:.1f}'.format(wordPM)
+                            print(speed)  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+                            Totalerrors= 'Totalerrors: ' + '{}'.format(error)
+                            print(Totalerrors)
+
+                            # for line in st:
+                            st.write("Line {}: ".format(it))
+                            it += 1
+                            st.write(speed + ' , ')
+                            st.write(Totalerrors + '\n')
+
                             print('Enter "m" if you want to move to the next sentence:  ')
                             while True:
 
                                 character = msvcrt.getch()
                                 if character == b'm':
                                     break
+
                                 else:
                                     pass
+
                             break
 
                 else:
@@ -82,8 +101,10 @@ try:
                             # accuracy = (accuracy / word_count) * 100
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            print('speed: ' + '{:.1f}'.format(wordPM))  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
+                            speed = 'speed: ' + '{:.1f}'.format(wordPM)
+                            print(speed)  # ,'Accuracy: ' + '{:.1f}'.format(accuracy) + '%', sep=' , ')
                             print('Total errors: ', error)
+
                             print('Enter "m" if you want to move to the next sentence:  ')
                             import tty, termios, sys
                             def getch():
