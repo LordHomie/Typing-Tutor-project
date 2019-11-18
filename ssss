@@ -53,13 +53,13 @@ try:
                     # print(c, type(c), z[k], type(z[k]), c == z[k])
 
                     if (c==z[k]) is False:
-                        print(False)
+                        # print("  False", end='\r')
                         error+=1
-                        print('error counter: ', error)
+                        print('          errors counter: ', error, end='\r')
                     else:
-                        print(True)
+                        print("   True", end='\r')
                     if c == z[k]:
-                        print(c)
+                        print(c, sep=' ', end='\r')
 
                         k += 1
                         if k == len(z):
@@ -67,7 +67,8 @@ try:
                             t1 = time.time()
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            speed= 'speed: ' + '{:.1f}'.format(wordPM)
+                            print('\n')
+                            speed='speed: ' + '{:.1f}'.format(wordPM)
                             print(speed)
                             Totalerrors= 'Totalerrors: ' + '{}'.format(error)
                             print(Totalerrors, '\n')
@@ -92,15 +93,15 @@ try:
                 else:
                     c = getch()
                     # print(c, type(c), z[k], type(z[k]), c == z[k])
-                    if (c==z[k]) is False:
-                        print(False)
-                        error+=1
-                        print('error counter: ', error)
+                    if (c == z[k]) is False:
+                        # print("  False", end='\r')
+                        error += 1
+                        print('          errors counter: ', error, end='\r')
                     else:
-                        print(True)
-
+                        print("   True", end='\r')
                     if c == z[k]:
-                        print(c)
+                        print(c, sep=' ', end='\r')
+
 
                         k += 1
                         if k == len(z):
@@ -108,7 +109,8 @@ try:
                             t1 = time.time()
                             timeTaken = t1 - t0
                             wordPM = (word_count / timeTaken)
-                            speed = 'speed: ' + '{:.1f}'.format(wordPM)
+                            print('\n')
+                            speed ='speed: ' + '{:.1f}'.format(wordPM)
                             print(speed)
                             Totalerrors = 'Totalerrors: ' + '{}'.format(error)
                             print(Totalerrors, '\n')
