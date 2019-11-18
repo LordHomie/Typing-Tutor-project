@@ -31,7 +31,7 @@ try:
 
             st1= open('statistics.txt', 'r')
             for lines in st1:
-                print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLine {}: {}".format(it, lines.strip()), sep='')
+                print("                       Line {}: {}".format(it, lines.strip()), sep='')
                 it += 1
 
 
