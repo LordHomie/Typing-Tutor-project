@@ -44,9 +44,6 @@ try:
             z = line.strip()
             t0 = time.time() #time starts here
 
-
-
-
             while True:
                 if platform.system() == "Windows":
                     c = getch().decode()
@@ -85,10 +82,6 @@ try:
                         print('press "s" to show your statistcs and to move to the next line OR "e" to exit:  ' + '\n')
 
 
-
-
-
-
                         while True:
                             if platform.system() == "Windows":
                                 character = getch()
@@ -100,28 +93,20 @@ try:
 
                                 else:
                                     pass
+
+                            else:
+                                while True:
+
+                                    character = getch()
+                                    if (character == "s"):
+                                        break
+
+                                    if (character == 'e'):
+                                        exit()
+
+                                    else:
+                                        pass            
                         break
-                    # else:
-                    #     while True:
-                    #
-                    #         character = getch()
-                    #         if (character == "s"):
-                    #             break
-                    #
-                    #         if (character == 'e'):
-                    #             exit()
-                    #
-                    #         else:
-                    #             pass
-                    #     break
-
-
-
-
-
-
-
-
-
+                 
 except IOError as e:
     print("File doesn't exist!!")
