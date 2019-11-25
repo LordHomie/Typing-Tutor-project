@@ -58,7 +58,7 @@ try:
                     # print(c, type(c), z[k], type(z[k]), c == z[k])
                     pass
 
-                if (c == z[k]) is False:
+                if c != z[k]:
                     error += 1
                     print('                      | errors counter: ', error, end='\r')  # counting errors in real-time
 
