@@ -1,0 +1,72 @@
+import tkinter as tk
+root = tk.Tk()
+root.geometry("400x280")
+import time
+
+try:
+	with open('sentences.txt', 'r') as f:
+		current_line = ''
+
+
+		def next_line():
+			global current_line
+			current_line = next(f)
+			label.config(text=current_line)
+
+
+		label = tk.Label(root, text='')
+		label.pack()
+		l = label.cget("text")
+
+		e = tk.Entry(root)
+		e.pack()
+
+
+
+		# l1 = tuple(l)
+		# l2 = str(l1[-1])
+
+		z = e.get()
+		# z1 = tuple(z)
+		# z2 = str(z1[-1])
+		start = time.time()
+		word_count = len(l.split())
+
+
+		def pressed(keyevent):
+			stop = time.time()
+			timetaken = stop - start
+			speed = (word_count/timetaken)
+			# if e.get() == len(label.cget("text")):
+			# 	print('true')
+			# else:
+			# 	print('false')
+			speedPerpressing.config(text=("Speed-> " + "{:.2f}".format(speed)))
+			if len(e.get()) == len(label.cget("text")) and e.get() != 1 :
+				evaluation.config(text="Match!!")
+				finalspeed.config(text=("Your final typing speed is: {:.2f}".format(speed)))
+
+
+		speedPerpressing = tk.Label( root, text='')
+		speedPerpressing.pack()
+
+		evaluation = tk.Label( root, text='')
+		evaluation.pack()
+
+		finalspeed = tk.Label( root, text='')
+		finalspeed.pack()
+
+
+		btn = tk.Button(root, text="Click for next", command=next_line)
+		btn.pack()
+
+		next_line()
+		e.bind('<KeyRelease>', pressed)
+		root.mainloop()
+
+
+except IOError as ex:
+	NoFile = tk.Label(root, text="No such file exists!(")
+	NoFile.pack()
+
+root.mainloop()
