@@ -60,7 +60,7 @@ try:
 
 
 		it = 0
-		k = 0
+		# k = 0
 		error = 0
 
 
@@ -104,7 +104,7 @@ try:
 				stop2 = time.time()
 				timetaken2 = stop2 - start1
 				speed2 = (word_count / timetaken2)
-				finalspeed.config(text="You took {:.2f}".format(timetaken2) + " seconds , " + "Typing speed: {:.2f}".format(speed2))
+				finalspeed.config(text="You took {:.2f}".format(timetaken2) + " seconds , " + "Typing speed: {:.2f} ,".format(speed2) + " mistakes: {}".format(error))
 				st1 = open('statistics.txt', 'a')
 				global it
 				it += 1
