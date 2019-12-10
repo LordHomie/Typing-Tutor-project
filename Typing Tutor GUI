@@ -23,12 +23,6 @@ try:
 			st.close()
 
 
-		# it = 1
-			# for lines in st1:
-			# 	print("                       Line {}: {}".format(it, lines.strip()), sep='')
-			# 	it += 1
-
-
 		def clear(content):
 			content.set("")
 
@@ -41,8 +35,6 @@ try:
 			global current_line
 			current_line = next(f)
 			label.config(text=current_line.strip('\n'))
-			# S = st1.readline()
-			# statisticsLABEL.config(text=S)
 
 
 		label = tk.Label(root, text='')
@@ -67,24 +59,32 @@ try:
 
 		it = 0
 		k = 0
+		error = 0
 
 		def pressed(keyevent):
+			global k
+			k += 1
+
 			word_count = len(label.cget("text").split())
 			stop1 = time.time()
 			timetaken1 = stop1 - start0
 			speed1 = (word_count / timetaken1)
 			speedPerpressing.config(text=("Speed-> " + "{:.2f}".format(speed1)))
 
-			# global k
-			# k += 1
-			if e.get() == label.cget("text")[k]:
-				print(e.get(), type(e.get()), label.cget("text")[k], type(label.cget("text")[k]), e.get() == label.cget("text")[k])
-				print("true")
 
+			if e.get() == label.cget("text")[:k]:
+				print(e.get(), type(e.get()), label.cget("text")[:k], type(label.cget("text")[:k]), e.get() == label.cget("text")[:k])
+				print("correct")
+				bool.config(text="correct letter")
 
 			else:
-				print(e.get(), type(e.get()), label.cget("text")[k], type(label.cget("text")[k]), e.get() == label.cget("text")[k])
-				print("False")
+				print(e.get(), type(e.get()), label.cget("text")[:k], type(label.cget("text")[:k]), e.get() == label.cget("text")[:k])
+				print("incorrect")
+				bool.config(text="incorrect letter")
+				global error
+				error += 1
+				print(error)
+				totalerrors.config(text="total mistakes: {}".format(error))
 
 			if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:
 				global start1
@@ -111,6 +111,12 @@ try:
 
 		speedPerpressing = tk.Label( root, text='')
 		speedPerpressing.pack(in_= top)
+
+		bool = tk.Label(root, text='')
+		bool.pack(in_=top)
+
+		totalerrors = tk.Label(root, text='')
+		totalerrors.pack(in_=top)
 
 		evaluation = tk.Label( root, text='')
 		evaluation.pack(in_= top)
