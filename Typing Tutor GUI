@@ -8,21 +8,22 @@ bottom = tk.Frame(root)
 top.pack(side=tk.TOP)
 bottom.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
-# if os.path.isfile('statistics.txt'):
-#     os.remove('statistics.txt')
+if os.path.isfile('statistics.txt'):
+    os.remove('statistics.txt')
+write = open('statistics.txt', 'w')
+
 try:
 	with open('sentences.txt', 'r') as f:
 		current_line = ''
 
-		st = open('statistics.txt', 'a')
-
-		st1 = open('statistics.txt', 'r')
-
 		def statistics():
-			S = st1.readlines()
+			st = open('statistics.txt', 'r+')
+			S = st.readlines()
 			statisticsLABEL.config(text=S)
+			st.close()
 
-			# it = 1
+
+		# it = 1
 			# for lines in st1:
 			# 	print("                       Line {}: {}".format(it, lines.strip()), sep='')
 			# 	it += 1
@@ -64,17 +65,32 @@ try:
 		start0 = time.time()
 
 
-		def pressed(keyevent):
+		it = 0
+		k = 0
 
+		def pressed(keyevent):
 			word_count = len(label.cget("text").split())
 			stop1 = time.time()
 			timetaken1 = stop1 - start0
 			speed1 = (word_count / timetaken1)
 			speedPerpressing.config(text=("Speed-> " + "{:.2f}".format(speed1)))
 
+			# global k
+			# k += 1
+			if e.get() == label.cget("text")[k]:
+				print(e.get(), type(e.get()), label.cget("text")[k], type(label.cget("text")[k]), e.get() == label.cget("text")[k])
+				print("true")
+
+
+			else:
+				print(e.get(), type(e.get()), label.cget("text")[k], type(label.cget("text")[k]), e.get() == label.cget("text")[k])
+				print("False")
+
 			if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:
 				global start1
 				start1 = time.time()
+
+
 
 			if label.cget("text") == e.get():
 				evaluation.config(text = "Match")
@@ -82,7 +98,11 @@ try:
 				timetaken2 = stop2 - start1
 				speed2 = (word_count / timetaken2)
 				finalspeed.config(text="You took {:.2f}".format(timetaken2) + " seconds , " + "Typing speed: {:.2f}".format(speed2))
-				st.write("{}".format(finalspeed.cget("text")) + '\n')
+				st1 = open('statistics.txt', 'a')
+				global it
+				it += 1
+				st1.write("Line {}: {}".format(it,(finalspeed.cget("text"))) + '\n')
+				st1.close()
 
 			if label.cget("text") != e.get():
 				evaluation.config(text="you're still in process")
