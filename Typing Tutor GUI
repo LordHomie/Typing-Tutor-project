@@ -1,64 +1,118 @@
+import time
+import os
 import tkinter as tk
 root = tk.Tk()
-root.geometry("400x280")
-import time
+root.geometry("400x600")
+top = tk.Frame(root)
+bottom = tk.Frame(root)
+top.pack(side=tk.TOP)
+bottom.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
+# if os.path.isfile('statistics.txt'):
+#     os.remove('statistics.txt')
 try:
 	with open('sentences.txt', 'r') as f:
 		current_line = ''
+
+		st = open('statistics.txt', 'a')
+
+		st1 = open('statistics.txt', 'r')
+
+		def statistics():
+			S = st1.readlines()
+			statisticsLABEL.config(text=S)
+
+			# it = 1
+			# for lines in st1:
+			# 	print("                       Line {}: {}".format(it, lines.strip()), sep='')
+			# 	it += 1
+
+
+		def clear(content):
+			content.set("")
+
+
+		def close_window():
+			root.destroy()
 
 
 		def next_line():
 			global current_line
 			current_line = next(f)
-			label.config(text=current_line)
+			label.config(text=current_line.strip('\n'))
+			# S = st1.readline()
+			# statisticsLABEL.config(text=S)
 
 
 		label = tk.Label(root, text='')
-		label.pack()
+		label.pack(in_= top)
 		l = label.cget("text")
 
-		e = tk.Entry(root)
-		e.pack()
+		instruction = tk.Label(root, text='Type here:')
+		instruction.pack(in_=top)
+		content = tk.StringVar()
+		e = tk.Entry(root, textvariable = content,  font = "Helvetica 20 bold")
+		e.pack(in_= top)
 
-
-
+		# l = label.cget("text")
 		# l1 = tuple(l)
 		# l2 = str(l1[-1])
 
 		z = e.get()
 		# z1 = tuple(z)
 		# z2 = str(z1[-1])
-		start = time.time()
-		word_count = len(l.split())
+		start0 = time.time()
 
 
 		def pressed(keyevent):
-			stop = time.time()
-			timetaken = stop - start
-			speed = (word_count/timetaken)
-			# if e.get() == len(label.cget("text")):
-			# 	print('true')
-			# else:
-			# 	print('false')
-			speedPerpressing.config(text=("Speed-> " + "{:.2f}".format(speed)))
-			if len(e.get()) == len(label.cget("text")) and e.get() != 1 :
-				evaluation.config(text="Match!!")
-				finalspeed.config(text=("Your final typing speed is: {:.2f}".format(speed)))
+
+			word_count = len(label.cget("text").split())
+			stop1 = time.time()
+			timetaken1 = stop1 - start0
+			speed1 = (word_count / timetaken1)
+			speedPerpressing.config(text=("Speed-> " + "{:.2f}".format(speed1)))
+
+			if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:
+				global start1
+				start1 = time.time()
+
+			if label.cget("text") == e.get():
+				evaluation.config(text = "Match")
+				stop2 = time.time()
+				timetaken2 = stop2 - start1
+				speed2 = (word_count / timetaken2)
+				finalspeed.config(text="You took {:.2f}".format(timetaken2) + " seconds , " + "Typing speed: {:.2f}".format(speed2))
+				st.write("{}".format(finalspeed.cget("text")) + '\n')
+
+			if label.cget("text") != e.get():
+				evaluation.config(text="you're still in process")
+				finalspeed.config(text="Results......")
 
 
 		speedPerpressing = tk.Label( root, text='')
-		speedPerpressing.pack()
+		speedPerpressing.pack(in_= top)
 
 		evaluation = tk.Label( root, text='')
-		evaluation.pack()
+		evaluation.pack(in_= top)
 
-		finalspeed = tk.Label( root, text='')
-		finalspeed.pack()
+		finalspeed = tk.Label(root, width=50, height=1, bg = "white", text='')
+		finalspeed.pack(in_= top)
 
 
-		btn = tk.Button(root, text="Click for next", command=next_line)
-		btn.pack()
+		nxtbtn = tk.Button(root, width=18, height=3, text="Click for next line", command=next_line)
+		nxtbtn.pack(in_= top, side= tk.LEFT, padx=15, pady=10, ipadx = 15)
+
+		clearBtn = tk.Button(root, width=20, height=3, text="Clear input",command=lambda: clear(content))
+		clearBtn.pack(in_= top, side= tk.LEFT, padx=20, pady=10, ipadx = 20)
+
+		closeWindow = tk.Button(root, width=18, height=3, text="CLOSE", command= close_window)
+		closeWindow.pack(in_= bottom, side= tk.LEFT, padx=20, pady=10, ipadx = 10)
+
+		printStatistics = tk.Button(root, width=18, height=3, text="My Statistics", command=statistics)
+		printStatistics.pack(in_= bottom, side= tk.LEFT, padx=20, pady=10, ipadx=13)
+
+		statisticsLABEL = tk.Label(root, text='')
+		statisticsLABEL.pack()
 
 		next_line()
 		e.bind('<KeyRelease>', pressed)
