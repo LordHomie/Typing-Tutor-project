@@ -1,4 +1,4 @@
-#Typing Tutor (Display statistics while typing in real-time)
+# Typing Tutor (Display statistics while typing in real-time)
 
 import time
 import platform
