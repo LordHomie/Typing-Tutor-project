@@ -51,18 +51,12 @@ try:
 		e = tk.Entry(root, textvariable = content,  font = "Helvetica 20 bold")
 		e.pack(in_= top)
 
-		# l = label.cget("text")
-		# l1 = tuple(l)
-		# l2 = str(l1[-1])
 
 		z = e.get()
-		# z1 = tuple(z)
-		# z2 = str(z1[-1])
 		start0 = time.time()
 
 
 		it = 0
-		# k = 0
 		error = 0
 
 
@@ -95,10 +89,9 @@ try:
 				totalerrors.config(text="total mistakes: {}".format(error))
 
 
-			# if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:
-
-
-
+			# if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:  #this to start time after typing the first letter
+			# 	global start1
+			# 	start1 = time.time()
 
 			if label.cget("text") == e.get():
 				evaluation.config(text = "Match")
@@ -158,3 +151,14 @@ except IOError as ex:
 	NoFile.pack()
 
 root.mainloop()
+
+
+#these next lines are not important but only for comparing between the input and each lines from the file
+# print(str(tuple(e.get())[-1]), type(str(tuple(e.get())[-1])), str(tuple(label.cget("text"))[-1]), type(str(tuple(label.cget("text"))[-1])), str(tuple(e.get())[-1]) == str(tuple(label.cget("text"))[-1]))
+# if str(tuple(e.get())[-1]) == str(tuple(label.cget("text"))[-1]):
+#
+# print(e.get(), type(e.get()), label.cget("text"), type(label.cget("text")), e.get() == label.cget("text"))
+# if e.get() == label.cget("text"):
+#
+# print(len(e.get()), type(len(e.get())), len(label.cget("text")), type(len(label.cget("text"))), len(e.get()) == len(label.cget("text")))
+# if len(e.get()) == len(label.cget("text")):
