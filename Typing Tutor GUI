@@ -35,6 +35,8 @@ try:
 			global current_line
 			current_line = next(f)
 			label.config(text=current_line.strip('\n'))
+			global start1
+			start1 = time.time()
 			global k
 			k=0
 
@@ -93,9 +95,8 @@ try:
 				totalerrors.config(text="total mistakes: {}".format(error))
 
 
-			if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:
-				global start1
-				start1 = time.time()
+			# if len(e.get()) == 1 and len(label.cget("text")) > 1 and str(tuple(label.cget("text"))[0]) == keyevent.char:
+
 
 
 
