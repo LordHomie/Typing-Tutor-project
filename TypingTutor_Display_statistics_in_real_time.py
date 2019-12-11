@@ -1,3 +1,5 @@
+#Typing Tutor (Display statistics while typing in real-time)
+
 import time
 import platform
 import os
